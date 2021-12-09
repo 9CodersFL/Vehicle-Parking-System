@@ -16,36 +16,40 @@ function addVehicle() {
     let vehicleType = document.getElementById('vehicleType');
     let vehicleNo = document.getElementById('vehicleNo');
     let vehicleOwner = document.getElementById('vehicleOwner');
-    let newTime = new Date();
-    let currentDate = newTime.getDate();
-    let month = newTime.getMonth()+1;
-    let hours = newTime.getHours();
-    let minutes = newTime.getMinutes();
-    if (hours < 10) {
-        hours = `0${hours}`
+    if (vehicleNo.value.length == 0 || vehicleOwner.value.length == 0 || vehicleType.value == "Select") {
+        return;
+    } else {
+        let newTime = new Date();
+        let currentDate = newTime.getDate();
+        let month = newTime.getMonth()+1;
+        let hours = newTime.getHours();
+        let minutes = newTime.getMinutes();
+        if (hours < 10) {
+            hours = `0${hours}`
+        }
+        if (minutes < 10) {
+            minutes = `0${minutes}`
+        }
+        tbody.innerHTML += `
+            <tr>
+                <td>${currentDate} - ${month}</td>
+                <td>${vehicleNo.value}</td>
+                <td>${vehicleOwner.value}</td>
+                <td>${vehicleType.value}</td>
+                <td>${hours}:${minutes}</td>
+                <td>--</td>
+                <td>
+                    <button type="button" onclick="departVehicle(this)">Depart</button>
+                </td>
+                <td><button type="button" disabled onclick="printAcknowledgement(this.parentNode.parentNode)">Print</button></td>
+            </tr>
+            `;
+        vehicleNo.value = "";
+        vehicleNo.innerHTML = "";
+        vehicleOwner.value = "";
+        vehicleOwner.innerHTML = "";
+        vehicleType.value = "Select";
     }
-    if (minutes < 10) {
-        minutes = `0${minutes}`
-    }
-    tbody.innerHTML += `
-        <tr>
-            <td>${currentDate} - ${month}</td>
-            <td>${vehicleNo.value}</td>
-            <td>${vehicleOwner.value}</td>
-            <td>${vehicleType.value}</td>
-            <td>${hours}:${minutes}</td>
-            <td>--</td>
-            <td>
-                <button type="button" onclick="departVehicle(this)">Depart</button>
-            </td>
-            <td><button type="button" disabled onclick="printAcknowledgement(this.parentNode.parentNode)">Print</button></td>
-        </tr>
-        `;
-    vehicleNo.value = "";
-    vehicleNo.innerHTML = "";
-    vehicleOwner.value = "";
-    vehicleOwner.innerHTML = "";
-    vehicleType.value = "Select";
 }
 
 function departVehicle(element) {
