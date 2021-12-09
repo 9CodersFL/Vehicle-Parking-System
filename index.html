@@ -10,11 +10,47 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <h1 class="heading">Vehicle Parking System</h1>
+    <div class="acknowledgement" id="acknowledgement">
+        <h2>Acknowledgement</h2>
+        <div class="value-container" id="containerAcw"></div>
+
+        <div class="button">
+            <button id="print" onclick="window.print()">Print</button>
+            <button id="cancel" onclick="toggleModal()">Cancel</button>
+        </div>
+    </div>
+    <div class="overlay1" id="overlay"></div>
+    <div class="overlay" id="overlay"></div>
+    <div class="wrapper" id="main">
+        <div class="chart">
+            <h3>Price Chart</h3>
+            <div class="chart-value">
+                <strong>Bike : </strong>
+                <div>25Rs</div>
+            </div>
+            <div class="chart-value">
+                <strong>Scooty : </strong>
+                <div>20Rs</div>
+            </div>
+            <div class="chart-value">
+                <strong>Car : </strong>
+                <div>50Rs</div>
+            </div>
+            <div class="chart-value">
+                <strong>Auto : </strong>
+                <div>40Rs</div>
+            </div>
+            <div class="chart-value">
+                <strong>Truck : </strong>
+                <div>70Rs</div>
+            </div>
+            <p>For 8 Hours</p>
+        </div>
+        <h1 class="heading">Vehicle Parking</h1>
         <div class="formInput">
-            <input type="text" id="vehicleNo" placeholder="Enter The Vehicle Number">
-            <select id="vehicleType">
+            <input type="text" id="vehicleNo" oninput="disableBtn()" placeholder="AB 04 QU 7**0">
+            <input type="text" id="vehicleOwner" oninput="disableBtn()" placeholder="Enter Vehicle Owner Name">
+            <select id="vehicleType" onchange="disableBtn()">
                 <option value="Select" selected>Select</option>
                 <option value="Car">Car</option>
                 <option value="Scooty">Scooty</option>
@@ -22,22 +58,22 @@
                 <option value="Auto">Auto</option>
                 <option value="Truck">Truck</option>
             </select>
-            <button type="button" onclick="addVehicle()">Add Vehicle</button>
+            <button type="button" disabled id="addVehicleBtn" onclick="addVehicle()">Add Vehicle</button>
         </div>
         <table>
             <thead>
                 <tr>
+                    <th>Date</th>
                     <th>Vehicle No.</th>
+                    <th>Vehicle Owner</th>
                     <th>Vehicle Type</th>
                     <th>Vehicle Entry Time</th>
                     <th>Vehicle Exit Time</th>
                     <th>Departed</th>
-                    <th>Amount</th>
+                    <th>Acknowledgement</th>
                 </tr>
             </thead>
-            <tbody id="tbody">
-
-            </tbody>
+            <tbody id="tbody"></tbody>
         </table>
     </div>
     <script src="js/script.js"></script>
